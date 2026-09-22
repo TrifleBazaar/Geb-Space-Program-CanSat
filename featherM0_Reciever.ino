@@ -32,11 +32,11 @@ void setup() {
     while (1) delay(10);
   }
   rf95.setTxPower(13, false);
-  pinMode(13, OUTPUT)
+  pinMode(13, OUTPUT);
 }
 
 void loop() {
-  digitalWrite(13, HIGH)
+  digitalWrite(13, HIGH);
   if (rf95.available()) {
     uint8_t buf[RH_RF95_MAX_MESSAGE_LEN];
     uint8_t len = sizeof(buf);
@@ -54,7 +54,7 @@ void loop() {
       Serial.print("Approx altitude = "); Serial.print(alt); Serial.println(" m");
       Serial.println();
     }
-  digitalWrite(13, LOW)
-  delay(500)
+  digitalWrite(13, LOW);
+  delay(500);
   }
 }
