@@ -5,12 +5,15 @@
 #define RFM95_RST 4
 #define RFM95_INT 3
 #define RF95_FREQ 868.0
+#define DEBUG 0
 
 RH_RF95 rf95(RFM95_CS, RFM95_INT);
 
 void setup() {
   Serial.begin(9600);
+#ifdef DEBUG
   while ( !Serial ) delay(100);
+#endif
 
   pinMode(RFM95_RST, OUTPUT);
   digitalWrite(RFM95_RST, HIGH);
