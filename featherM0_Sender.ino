@@ -64,6 +64,7 @@ void setup() {
                   Adafruit_BMP280::SAMPLING_X16,    /* Pressure oversampling */
                   Adafruit_BMP280::FILTER_X16,      /* Filtering. */
                   Adafruit_BMP280::STANDBY_MS_500); /* Standby time. */
+  pinMode(13, OUTPUT);
 }
 
 void loop() {
@@ -89,6 +90,9 @@ void loop() {
   msg.toCharArray(buf, sizeof(buf));
   rf95.send((uint8_t *)buf, strlen(buf) + 1);
   rf95.waitPacketSent();
-
-  delay(1000);
+  
+  digitalWrite(13, HIGH);
+  delay(250);
+  digitalWrite(13, LOW);
+  delay(250);
 }
