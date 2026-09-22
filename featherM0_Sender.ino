@@ -31,11 +31,15 @@ void setup() {
   delay(10);
 
   if (!rf95.init()) {
+  #ifdef DEBUG
     Serial.println(F("LoRa init failed"));
+  #endif
     while (1) delay(10);
   }
   if (!rf95.setFrequency(RF95_FREQ)) {
+  #ifdef DEBUG
     Serial.println(F("setFrequency failed"));
+  #endif
     while (1) delay(10);
   }
   rf95.setTxPower(13, false);
@@ -43,6 +47,7 @@ void setup() {
   unsigned status;
   status = bmp.begin(BMP280_ADDRESS);
   if (!status) {
+  #ifdef DEBUG
     Serial.println(F("Could not find a valid BMP280 sensor, check wiring or "
                       "try a different address!"));
     Serial.print("SensorID was: 0x"); Serial.println(bmp.sensorID(),16);
@@ -50,6 +55,7 @@ void setup() {
     Serial.print("   ID of 0x56-0x58 represents a BMP 280,\n");
     Serial.print("        ID of 0x60 represents a BME 280.\n");
     Serial.print("        ID of 0x61 represents a BME 680.\n");
+  #endif
     while (1) delay(10);
   }
   /* Default settings from datasheet. */
